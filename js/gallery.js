@@ -64,12 +64,20 @@ const images = [
   },
 ];
 
-const instance = basicLightbox.create(`
-    <h1 class="imgDesc"></h1>
+
+function modalImage(title, imgSrc){
+
+    const instance = basicLightbox.create(`
+    <h1 class="imgDesc">${title}</h1>
     <div class="imgModalCont">
-        <img class="imgModal" src="#" width="800" height="600">
+        <img class="imgModal" src="${imgSrc}" width="1024" height="768">
     </div>
 `);
+
+    instance.show();
+
+}
+
 
 const imgDescription = document.querySelector('.imgDesc');
 
@@ -103,12 +111,7 @@ myGalleryUl.addEventListener("click", e => {
      }else{
         const imgSrc = e.target.dataset.source;
         const title = e.target.getAttribute('alt');
-        instance.show(
-            () => {
-                document.querySelector('.imgDesc').innerHTML = title;
-                document.querySelector('.imgModal').setAttribute('src', imgSrc);
-                }
-            );
-         }
+        modalImage(title, imgSrc);
+    }
     
 });
